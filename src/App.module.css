@@ -1,0 +1,43 @@
+.wrapper {
+  max-width: 46rem;
+  margin: -1.65rem auto 0;
+}
+
+.inputBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.countersBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 4.1875rem;
+  margin-bottom: 1.5rem;
+}
+
+.countersText {
+  font-size: 0.875rem;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.totalTasksText {
+  color: var(--blue);
+}
+
+.doneTasksText {
+  color: var(--purple);
+}
+
+.countersNumber {
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.125rem 0.5rem;
+  background: var(--gray-400);
+  color: var(--gray-200);
+  border-radius: 999px;
+}
