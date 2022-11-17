@@ -5,7 +5,7 @@ import styles from './App.module.css';
 import { Input } from './components/Input';
 import { Button } from './components/Button';
 import { TasksList } from './components/TasksList';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
 import { Task } from './components/Task';
 import { ITask } from './interfaces/ITask';
 
@@ -37,7 +37,11 @@ function App() {
 
   const totalOfTasksDone = tasks.filter((task) => task.isDone === true).length;
 
-  function handleAddTask() {
+  const isNewTaskInput = newTaskInput.length === 0;
+
+  function handleAddTask(event: FormEvent) {
+    event.preventDefault();
+    if (!isNewTaskInput) return;
     const newTask = {
       id: Date.now().toString(),
       description: newTaskInput,
@@ -54,6 +58,7 @@ function App() {
   }
 
   function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+    event.target.setCustomValidity('');
     setNewTaskInput(event.target.value);
   }
 
@@ -68,15 +73,19 @@ function App() {
     setTasks(newTasksList);
   }
 
+  function handleInvalidNewComment(event: InvalidEvent<HTMLFormElement>) {
+    event.target.setCustomValidity('Esse campo é obrigatório!');
+  }
+
   return (
     <div>
       <Header />
 
       <div className={styles.wrapper}>
-        <div className={styles.inputBar}>
-          <Input value={newTaskInput} onChange={handleInputChange} />
-          <Button onClick={handleAddTask} />
-        </div>
+        <form action="" className={styles.inputBar} onSubmit={handleAddTask} onInvalid={handleInvalidNewComment}>
+          <Input value={newTaskInput} onChange={handleInputChange} required />
+          <Button type="submit" disabled={isNewTaskInput} />
+        </form>
         <div className={styles.countersBar}>
           <div>
             <span className={[styles.countersText, styles.totalTasksText].join(' ')}>Tarefas criadas</span>

@@ -18,3 +18,8 @@
 .button svg {
   font-size: 1.4rem;
 }
+
+.button:disabled {
+  filter: opacity(0.8);
+  cursor: not-allowed;
+}
