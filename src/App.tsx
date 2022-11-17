@@ -5,6 +5,9 @@ import styles from './App.module.css';
 import { Input } from './components/Input';
 import { Button } from './components/Button';
 import { TasksList } from './components/TasksList';
+import { Checkbox } from './components/Checkbox';
+import { DeleteButton } from './components/DeleteButton';
+import { Task } from './components/Task';
 
 function App() {
   return (
@@ -27,6 +30,7 @@ function App() {
           </div>
         </div>
         <TasksList />
+        <Task />
       </div>
     </div>
   )
